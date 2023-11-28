@@ -3,6 +3,7 @@ import { User } from "../domain/user"
 
 export type CanalRepository = {
     getCanals(): Canal[]
+    addNew(name: string): void
 }
 
 export type UserRepository = {
