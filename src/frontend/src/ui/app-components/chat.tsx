@@ -1,4 +1,10 @@
-export function Chat() {
+import { Canal } from "../../domain/canal";
+
+type ChatProps = {
+    canal: Canal
+}
+
+export function Chat({ canal }: ChatProps) {
 
     return (
         <div

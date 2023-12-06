@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 
 type ListItemProps = {
     item: string;
@@ -24,23 +24,24 @@ const ListItem = ({ item, onClick }: ListItemProps) => {
 }
 
 type ListProps = {
+    children?: ReactNode,
     items: string[],
-    label?: string
+    label?: string,
+    onClick?: (item: string) => void
 }
 
-const List = ({ items, label }: ListProps) => {
-    const handleItemClick = (item: string) => {
-        console.log(`TODO ICI, Cliqué sur : ${item}`)
-    }
-
+const List = ({ children, items, label, onClick }: ListProps) => {
     return (
         <div>
-            <p>{label}</p>
+            <p>
+                {label}
+                {children}
+            </p>
             {items.map((item) => (
-                <ListItem key={item} item={item} onClick={handleItemClick} />
+                <ListItem key={item} item={item} onClick={item => onClick && onClick(item)} />
             ))}
         </div>
     )
 }
 
-export { List };
+export default List;
