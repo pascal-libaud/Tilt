@@ -1,31 +1,35 @@
-import React, { createContext } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { setCurrentDateTime, currentDateTime } from './helper/datetime';
+import { setCurrentDateTime } from './helper/datetime';
 import { _currentDatetime } from './infrastructure/datetime';
-import { Repositories } from './application/repositories';
 import { _createRepositories } from './infrastructure/repositories';
-import { Main } from './ui/app-components/main';
+import { RepositoriesContext } from './ui/repositories-context';
+import Main from './ui/app-components/main';
+import Header from './ui/app-components/header';
+import Footer from './ui/app-components/footer';
 
-export const RepositoriesContext = createContext<Repositories>(undefined!);
+import './App.css';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  setCurrentDateTime(_currentDatetime);
-  const dt = currentDateTime();
+  setCurrentDateTime(_currentDatetime); // DI
 
   return (
     <RepositoriesContext.Provider value={_createRepositories()}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" width={125} height={125} />
-          TILT
-        </header>
-        <body className="App-body">
+      <div className="app-container d-flex flex-column min-vh-100">
+
+        <div className="p-3">
+          <Header />
+        </div>
+
+
+        <div className="flex-grow-1 d-flex p-3">
           <Main />
-        </body>
-        <footer className="App-footer">
-          <p>{dt}</p>
-        </footer>
+        </div>
+
+        <div className="p-3">
+          <Footer />
+        </div>
+
       </div>
     </RepositoriesContext.Provider>
   );

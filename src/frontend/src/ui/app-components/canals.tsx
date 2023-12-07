@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
-import { RepositoriesContext } from "../../App";
 import { getCanals } from "../../application/repositories";
 import CustomModal from "../ui-components/modal";
 import List from "../ui-components/list";
+import { RepositoriesContext } from "../repositories-context";
 
-export function Canals() {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const repositories = useContext(RepositoriesContext);
+type CanalsProps = {
+    onCanalChange: (name: string) => void
+}
+
+function Canals({ onCanalChange }: CanalsProps) {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const repositories = useContext(RepositoriesContext)
 
     const handleNameSubmit = (name: string) => {
         repositories.canalRepository.addNew(name)
         setIsModalOpen(false)
-    }
-
-    const handleItemClick = (item: string) => {
-        console.log(`TODO ICI, Cliqué sur : ${item}`)
     }
 
     return (
@@ -26,8 +26,8 @@ export function Canals() {
             <List
                 items={getCanals(repositories).map(c => c.name)}
                 label="Canaux"
-                onClick={handleItemClick}>
-                <button onClick={() => setIsModalOpen(true)}>+</button>
+                onClick={onCanalChange}>
+                <button className="btn btn-sm btn-outline-primary btn-rounded" onClick={() => setIsModalOpen(true)}>+</button>
             </List>
             <CustomModal isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
@@ -35,3 +35,5 @@ export function Canals() {
         </div>
     )
 }
+
+export default Canals;

@@ -1,5 +1,12 @@
 .App {
+  background-color: black;
+  color: white;
   text-align: center;
+}
+
+.app-container {
+  background-color: black;
+  color: white;
 }
 
 .App-logo {

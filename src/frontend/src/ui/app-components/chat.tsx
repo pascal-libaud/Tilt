@@ -1,18 +1,24 @@
 import { Canal } from "../../domain/canal";
 
 type ChatProps = {
-    canal: Canal
+    canal: Canal | null
 }
 
-export function Chat({ canal }: ChatProps) {
+function Chat({ canal }: ChatProps) {
 
-    return (
-        <div
-            style={{
-                border: '1px solid #ccc',
-                borderRadius: '5px'
-            }}>
-            CHAT
-        </div>
-    )
+    if (canal == null)
+        return (<p>Veuillez sélectionner une conversation</p>)
+    else
+        return (
+            <div
+                style={{
+                    border: '1px solid #ccc',
+                    borderRadius: '5px'
+                }}>
+                <p>{canal.name}</p>
+                CHAT
+            </div>
+        )
 }
+
+export default Chat;

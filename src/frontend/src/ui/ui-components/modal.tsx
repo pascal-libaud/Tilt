@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { default as ReactModal } from 'react-modal';
 
-export type CustomModalProps = {
+type CustomModalProps = {
     isOpen: boolean
     onRequestClose: () => void
     onSubmit: (name: string) => void
