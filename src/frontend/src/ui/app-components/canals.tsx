@@ -18,11 +18,7 @@ function Canals({ onCanalChange }: CanalsProps) {
     }
 
     return (
-        <div
-            style={{
-                border: '1px solid #ccc',
-                borderRadius: '5px'
-            }}>
+        <div>
             <List
                 items={getCanals(repositories).map(c => c.name)}
                 label="Canaux"

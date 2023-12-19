@@ -10,11 +10,7 @@ function Chat({ canal }: ChatProps) {
         return (<p>Veuillez sélectionner une conversation</p>)
     else
         return (
-            <div
-                style={{
-                    border: '1px solid #ccc',
-                    borderRadius: '5px'
-                }}>
+            <div>
                 <p>{canal.name}</p>
                 CHAT
             </div>

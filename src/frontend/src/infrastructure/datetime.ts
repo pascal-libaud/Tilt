@@ -1,4 +1,4 @@
-import { DateTimeString } from "../helper/datetime";
+import { DateTimeString } from "../domain/datetime";
 
 export function _currentDatetime(): DateTimeString {
     return new Date().toISOString();

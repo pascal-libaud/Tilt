@@ -1,4 +1,4 @@
-import { DateTimeString, currentDateTime } from "../helper/datetime";
+import { DateTimeString, currentDateTime } from "./datetime";
 import { Canal } from "./canal"
 import { User } from "./user"
 

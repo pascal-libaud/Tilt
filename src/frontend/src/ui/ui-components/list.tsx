@@ -1,18 +1,27 @@
 import { useState, ReactNode } from 'react';
 
 type ListItemProps = {
-    item: string;
-    onClick: (item: string) => void;
+    item: string
+    isSelected: boolean
+    onClick: (item: string) => void
 }
 
-const ListItem = ({ item, onClick }: ListItemProps) => {
+const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const background = () => {
+        if (isSelected)
+            return isHovered ? 'darkblue' : 'lightblue'
+        else
+            return isHovered ? '#e0e0e0' : 'transparent'
+
+    }
 
     return (
         <div
             style={{
                 padding: '10px',
-                backgroundColor: isHovered ? '#e0e0e0' : 'transparent',
+                backgroundColor: background(),
                 cursor: isHovered ? 'pointer' : 'default'
             }}
             onMouseEnter={() => setIsHovered(true)}
@@ -38,7 +47,7 @@ const List = ({ children, items, label, onClick }: ListProps) => {
                 {children}
             </p>
             {items.map((item) => (
-                <ListItem key={item} item={item} onClick={item => onClick && onClick(item)} />
+                <ListItem key={item} item={item} isSelected={true} onClick={item => onClick && onClick(item)} />
             ))}
         </div>
     )
