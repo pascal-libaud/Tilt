@@ -1,4 +1,4 @@
-import { DateTimeString, currentDateTime } from "./datetime";
+import { currentDate } from "../shared/datetime";
 import { Canal } from "./canal"
 import { User } from "./user"
 
@@ -6,7 +6,7 @@ export type Message = {
     content: string,
     author: User,
     canal: Canal,
-    createdAt: DateTimeString
+    createdAt: Date
 }
 
 export function createMessage(author: User, canal: Canal, content: string): Message {
@@ -14,6 +14,6 @@ export function createMessage(author: User, canal: Canal, content: string): Mess
         content,
         author,
         canal,
-        createdAt: currentDateTime()
+        createdAt: currentDate.now()
     };
 }

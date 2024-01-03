@@ -1,5 +1,5 @@
-import { setCurrentDateTime } from './domain/datetime';
-import { _currentDatetime } from './infrastructure/datetime';
+import { setCurrentDate } from './shared/datetime';
+import { infraCurrentDate } from './infrastructure/datetime';
 import { _createRepositories } from './infrastructure/repositories';
 import { RepositoriesContext } from './ui/repositories-context';
 import Main from './ui/app-components/main';
@@ -11,7 +11,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  setCurrentDateTime(_currentDatetime); // DI
+  setCurrentDate(infraCurrentDate);
 
   return (
     <RepositoriesContext.Provider value={_createRepositories()}>

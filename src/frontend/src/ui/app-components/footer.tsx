@@ -1,7 +1,7 @@
-import { currentDateTime } from '../../domain/datetime';
+import { currentDate, formatDate } from '../../shared/datetime';
 
 function Footer() {
-    const dt = currentDateTime();
+    const dt = formatDate(currentDate.now())
 
     return (
         <footer className="App-footer">
