@@ -19,7 +19,7 @@ const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
     return (
         <div
             style={{
-                padding: '10px',
+                padding: '5px',
                 backgroundColor: `rgba(0, 0, 0, ${backgroundTranparency()})`,
                 cursor: isHovered ? 'pointer' : 'default'
             }}
@@ -46,9 +46,11 @@ const List = ({ children, items, initialSelectedItem, label, onClick }: ListProp
     return (
         <div>
             <p>
-                {label}
+                <b>{label?.toUpperCase()}</b>
+                &nbsp;
                 {children}
             </p>
+
             {items.map((item) => (
                 <ListItem
                     key={item}

@@ -1,4 +1,17 @@
 import { Canal } from "../../domain/canal";
+import { Message } from "../../domain/message";
+import Card from "../ui-components/card";
+
+
+type MessProps = {
+    message: Message
+}
+
+function Mess({ message }: MessProps) {
+    return (
+        <Card header={message.author.name} content={message.content} />
+    )
+}
 
 type ChatProps = {
     canal: Canal | null
@@ -14,11 +27,12 @@ function Chat({ canal }: ChatProps) {
                 <p>{canal.name}</p>
                 <hr />
                 <div style={{ overflowY: 'auto', flex: 1 }}>
-                    Les messages
-                    {/* {canal.messages.map(m => <p>m</p>)} */}
+                    {
+                        canal.messages.map(m => (<Mess message={m}></Mess>))
+                    }
                 </div>
                 <div>
-                    <button>Click</button>
+                    <button disabled>Click</button>
                 </div>
             </>
         )

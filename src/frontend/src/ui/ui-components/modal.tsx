@@ -31,4 +31,4 @@ const Modal = ({ isOpen, onRequestClose, onSubmit }: CustomModalProps) => {
     )
 }
 
-export default Modal;
+export default Modal; // TODO la reprendre pour la rendre jolie !

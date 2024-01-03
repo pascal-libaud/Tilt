@@ -1,19 +1,16 @@
 import { currentDate } from "../shared/datetime";
-import { Canal } from "./canal"
 import { User } from "./user"
 
 export type Message = {
     content: string,
     author: User,
-    canal: Canal,
     createdAt: Date
 }
 
-export function createMessage(author: User, canal: Canal, content: string): Message {
+export function createMessage(author: User, content: string): Message {
     return {
         content,
         author,
-        canal,
-        createdAt: currentDate.now()
+        createdAt: currentDate?.now() // TODO gérer le fait qu'on l'appelle trop tôt et que currentDate est null
     };
 }
