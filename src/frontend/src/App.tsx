@@ -15,7 +15,7 @@ function App() {
 
   return (
     <RepositoriesContext.Provider value={_createRepositories()}>
-      <div className="app-container min-vh-100">
+      <div className="app-container">
         <Header />
         <Main />
         <Footer />

@@ -10,10 +10,17 @@ function Chat({ canal }: ChatProps) {
         return (<p>Veuillez sélectionner une conversation</p>)
     else
         return (
-            <div>
+            <>
                 <p>{canal.name}</p>
-                CHAT
-            </div>
+                <hr />
+                <div style={{ overflowY: 'auto', flex: 1 }}>
+                    Les messages
+                    {/* {canal.messages.map(m => <p>m</p>)} */}
+                </div>
+                <div>
+                    <button>Click</button>
+                </div>
+            </>
         )
 }
 
