@@ -9,19 +9,18 @@ type ListItemProps = {
 const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const background = () => {
+    const backgroundTranparency = () => {
         if (isSelected)
-            return isHovered ? 'darkblue' : 'lightblue'
+            return isHovered ? 0.4 : 0.3
         else
-            return isHovered ? '#e0e0e0' : 'transparent'
-
+            return isHovered ? 0.2 : 0
     }
 
     return (
         <div
             style={{
                 padding: '10px',
-                backgroundColor: background(),
+                backgroundColor: `rgba(0, 0, 0, ${backgroundTranparency()})`,
                 cursor: isHovered ? 'pointer' : 'default'
             }}
             onMouseEnter={() => setIsHovered(true)}
@@ -33,13 +32,17 @@ const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
 }
 
 type ListProps = {
-    children?: ReactNode,
-    items: string[],
-    label?: string,
+    children?: ReactNode
+    items: string[]
+    initialSelectedItem?: string | null
+    label?: string
     onClick?: (item: string) => void
 }
 
-const List = ({ children, items, label, onClick }: ListProps) => {
+const List = ({ children, items, initialSelectedItem, label, onClick }: ListProps) => {
+
+    const [selectedItem, setSelectedItem] = useState<string | null>(initialSelectedItem ?? null)
+
     return (
         <div>
             <p>
@@ -47,7 +50,14 @@ const List = ({ children, items, label, onClick }: ListProps) => {
                 {children}
             </p>
             {items.map((item) => (
-                <ListItem key={item} item={item} isSelected={true} onClick={item => onClick && onClick(item)} />
+                <ListItem
+                    key={item}
+                    item={item}
+                    isSelected={item === selectedItem}
+                    onClick={item => {
+                        onClick && onClick(item)
+                        setSelectedItem(item)
+                    }} />
             ))}
         </div>
     )

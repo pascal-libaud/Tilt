@@ -33,7 +33,7 @@
 }
 
 .App-header {
-  background-color: #471d9b;
+  background-color: #5E2750;
   min-height: 5vh;
   display: flex;
   flex-direction: row;
@@ -45,8 +45,7 @@
 }
 
 .App-footer {
-  background-color: #471d9b;
-  flex-direction: column;
+  background-color: #535C3C;
   font-size: 16px;
   color: white;
   padding: 16px;
@@ -60,7 +59,7 @@
 }
 
 .canals {
-  background-color: #471d9b;
+  background-color: #333333;
   min-width: 15vh;
   margin-left: 16px;
   margin-right: 16px;
@@ -68,13 +67,13 @@
 }
 
 .chat {
-  background-color: darkslategray;
+  background-color: #1E3C4E;
   flex: 1;
   padding: 16px;
 }
 
 .users {
-  background-color: #471d9b;
+  background-color: #333333;
   min-width: 15vh;
   margin-left: 16px;
   margin-right: 16px;
