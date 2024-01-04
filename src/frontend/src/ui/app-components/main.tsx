@@ -25,7 +25,7 @@ function Main() {
                 <Chat canal={repositories.canalRepository.getSelectedCanal()} />
             </div>
             <div className="users">
-                <Users />
+                <Users canal={repositories.canalRepository.getSelectedCanal()} />
             </div>
         </div>
     )

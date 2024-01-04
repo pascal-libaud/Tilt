@@ -23,7 +23,22 @@ function Canals({ onCanalChange }: CanalsProps) {
                 items={getCanals(repositories).map(c => c.name)}
                 label="Canaux"
                 onClick={onCanalChange}>
-                <button className="btn btn-sm btn-outline-primary btn-rounded" onClick={() => setIsModalOpen(true)}>+</button>
+
+                <button
+                    style={{
+                        padding: '5px',
+                        borderRadius: '5px',
+                        width: '28px',
+                        fontSize: '16px',
+                        backgroundColor: '#535C3C',
+                        color: '#fff',
+                        border: '1px solid #333',
+                        outline: 'none',
+                    }}
+                    onClick={() => setIsModalOpen(true)}>
+                    +
+                </button>
+
             </List>
             <CustomModal isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}

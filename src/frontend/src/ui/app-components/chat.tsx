@@ -1,17 +1,5 @@
 import { Canal } from "../../domain/canal";
-import { Message } from "../../domain/message";
 import Card from "../ui-components/card";
-
-
-type MessProps = {
-    message: Message
-}
-
-function Mess({ message }: MessProps) {
-    return (
-        <Card header={message.author.name} content={message.content} />
-    )
-}
 
 type ChatProps = {
     canal: Canal | null
@@ -28,11 +16,33 @@ function Chat({ canal }: ChatProps) {
                 <hr />
                 <div style={{ overflowY: 'auto', flex: 1 }}>
                     {
-                        canal.messages.map(m => (<Mess message={m}></Mess>))
+                        canal.messages.map(m => <Card header={m.author.name} content={m.content} />)
                     }
                 </div>
-                <div>
-                    <button disabled>Click</button>
+                <div style={{ display: 'flex' }}>
+                    <input
+                        style={{
+                            flex: '1',
+                            marginRight: '10px',
+                            padding: '5px',
+                            border: '1px solid #ccc',
+                            borderRadius: '5px',
+                            fontSize: '16px',
+                            outline: 'none'
+                        }}
+                        placeholder="Taper un message" />
+                    <button
+                        style={{
+                            padding: '5px',
+                            borderRadius: '5px',
+                            fontSize: '16px',
+                            backgroundColor: '#535C3C',
+                            color: '#fff',
+                            border: '1px solid #333',
+                            outline: 'none',
+                        }}>
+                        Envoyer
+                    </button>
                 </div>
             </>
         )
