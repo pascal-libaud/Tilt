@@ -14,9 +14,9 @@ export function Users({ channel, userRepository }: UsersProps) {
     // TODO Créer un ui-component affichant un arbre
     return (
         <div>
-            <div>Online - {channel.users.filter(u => u.isOnline).length}</div>
+            <div>En ligne - {channel.users.filter(u => u.isOnline).length}</div>
             {channel.users.filter(u => u.isOnline).map(u => <div style={{ marginLeft: '20px' }}>{getName(u)}</div>)}
-            <div>Offline - {channel.users.filter(u => !u.isOnline).length}</div>
+            <div>Hors ligne - {channel.users.filter(u => !u.isOnline).length}</div>
             {channel.users.filter(u => !u.isOnline).map(u => <div style={{ marginLeft: '20px' }}>{getName(u)}</div>)}
         </div>
     )
