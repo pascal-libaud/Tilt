@@ -5,9 +5,9 @@ import { User } from "../domain/user";
 import { Message, createMessage } from "../domain/message";
 import { UserRepository } from "../application/user-repository";
 
-const pascal = { name: 'Pascal' }
-const bertrand = { name: 'Bertrand' }
-const alphonse = { name: 'Alphonse' }
+const pascal = { name: 'Pascal', isOnline: true }
+const bertrand = { name: 'Bertrand', isOnline: false }
+const alphonse = { name: 'Alphonse', isOnline: true }
 
 const users: User[] = [pascal, bertrand, alphonse]
 
@@ -20,7 +20,7 @@ const messages: Message[] = [
 
 export function useChannelRepository(): ChannelRepository {
     const defaultChannels: Channel[] = [
-        { name: 'General', users: [...users], messages: [...messages] },
+        { name: 'Général', users: [...users], messages: [...messages] },
         { name: 'Privé', users: [...users], messages: [] },
         { name: 'Dev', users: [...users], messages: [] }
     ]
@@ -48,6 +48,9 @@ export function useUserRepository(): UserRepository {
     return {
         getUsers() {
             return users;
+        },
+        getConnected() {
+            return pascal
         }
     };
 }

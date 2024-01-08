@@ -4,10 +4,11 @@ import Chat from "./chat";
 import { Users } from "./users";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ChannelRepositoryContext } from "../repositories-context";
+import { ChannelRepositoryContext, UserRepositoryContext } from "../repositories-context";
 
 function Main() {
     const channelRepository = useContext(ChannelRepositoryContext)
+    const userRepository = useContext(UserRepositoryContext)
 
     const handleChannelChanged = (name: string) => {
         const c = channelRepository.getChannels().find(x => x.name == name)
@@ -24,7 +25,7 @@ function Main() {
                 <Chat channel={channelRepository.getSelectedChannel()} />
             </div>
             <div className="users">
-                <Users channel={channelRepository.getSelectedChannel()} />
+                <Users userRepository={userRepository} channel={channelRepository.getSelectedChannel()} />
             </div>
         </div>
     )
