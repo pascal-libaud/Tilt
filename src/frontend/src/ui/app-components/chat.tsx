@@ -1,22 +1,22 @@
-import { Canal } from "../../domain/canal";
+import { Channel } from "../../domain/channel";
 import Card from "../ui-components/card";
 
 type ChatProps = {
-    canal: Canal | null
+    channel: Channel | null
 }
 
-function Chat({ canal }: ChatProps) {
+function Chat({ channel }: ChatProps) {
 
-    if (canal == null)
+    if (channel == null)
         return (<p>Veuillez sélectionner une conversation</p>)
     else
         return (
             <>
-                <p>{canal.name}</p>
+                <p>{channel.name}</p>
                 <hr />
                 <div style={{ overflowY: 'auto', flex: 1 }}>
                     {
-                        canal.messages.map(m => <Card header={m.author.name} content={m.content} />)
+                        channel.messages.map(m => <Card header={m.author.name} content={m.content} />)
                     }
                 </div>
                 <div style={{ display: 'flex' }}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CanalRepository, Repositories, UserRepository } from "../application/repositories";
-import { Canal } from "../domain/canal";
+import { ChannelRepository, Repositories, UserRepository } from "../application/repositories";
+import { Channel } from "../domain/channel";
 import { User } from "../domain/user";
 import { Message, createMessage } from "../domain/message";
 
@@ -17,28 +17,28 @@ const messages: Message[] = [
     createMessage(pascal, 'Quoi de neuf ?')
 ]
 
-function useCanalRepository(): CanalRepository {
-    const defaultCanals: Canal[] = [
+function useChannelRepository(): ChannelRepository {
+    const defaultChannels: Channel[] = [
         { name: 'General', users: [...users], messages: [...messages] },
         { name: 'Privé', users: [...users], messages: [] },
         { name: 'Dev', users: [...users], messages: [] }
     ]
 
-    const [canals, setCanals] = useState<Canal[]>(defaultCanals);
-    const [selected, setSelected] = useState<Canal>(canals[0]);
+    const [channels, setChannels] = useState<Channel[]>(defaultChannels);
+    const [selected, setSelected] = useState<Channel>(channels[0]);
 
     return {
-        getCanals() {
-            return canals;
+        getChannels() {
+            return channels;
         },
-        getSelectedCanal() {
+        getSelectedChannel() {
             return selected;
         },
         addNew(name: string) {
-            setCanals([...canals, { name, users: [], messages: [] }])
+            setChannels([...channels, { name, users: [], messages: [] }])
         },
-        selectCanal(canal: Canal) {
-            setSelected(canal)
+        selectChannel(channel: Channel) {
+            setSelected(channel)
         }
     }
 }
@@ -53,7 +53,7 @@ function useUserRepository(): UserRepository {
 
 export function _createRepositories(): Repositories {
     return {
-        canalRepository: useCanalRepository(),
+        channelRepository: useChannelRepository(),
         userRepository: useUserRepository()
     }
 }

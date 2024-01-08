@@ -1,11 +1,11 @@
-import { Canal } from "../domain/canal"
+import { Channel } from "../domain/channel"
 import { User } from "../domain/user"
 
-export type CanalRepository = {
-    getCanals(): Canal[]
-    getSelectedCanal(): Canal
+export type ChannelRepository = {
+    getChannels(): Channel[]
+    getSelectedChannel(): Channel
     addNew(name: string): void
-    selectCanal(canal: Canal): void
+    selectChannel(channel: Channel): void
 }
 
 export type UserRepository = {
@@ -13,10 +13,10 @@ export type UserRepository = {
 }
 
 export type Repositories = {
-    canalRepository: CanalRepository
+    channelRepository: ChannelRepository
     userRepository: UserRepository
 }
 
-export function getCanals(repositories: Repositories) {
-    return repositories.canalRepository.getCanals();
+export function getChannels(repositories: Repositories) {
+    return repositories.channelRepository.getChannels();
 }

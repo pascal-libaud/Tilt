@@ -1,10 +1,10 @@
-import { Canal } from "../../domain/canal"
+import { Channel } from "../../domain/channel"
 
 type UsersProps = {
-    canal: Canal
+    channel: Channel
 }
 
-export function Users({ canal }: UsersProps) {
+export function Users({ channel }: UsersProps) {
 
     return (
         <div>
