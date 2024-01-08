@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
-import { getChannels } from "../../application/repositories";
 import CustomModal from "../ui-components/modal";
 import List from "../ui-components/list";
-import { RepositoriesContext } from "../repositories-context";
+import { ChannelRepositoryContext } from "../repositories-context";
 
 type ChannelsProps = {
     onChannelChange: (name: string) => void
@@ -10,17 +9,17 @@ type ChannelsProps = {
 
 function Channels({ onChannelChange }: ChannelsProps) {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    const repositories = useContext(RepositoriesContext)
+    const channelRepository = useContext(ChannelRepositoryContext)
 
     const handleNameSubmit = (name: string) => {
-        repositories.channelRepository.addNew(name)
+        channelRepository.addNew(name)
         setIsModalOpen(false)
     }
 
     return (
         <div>
             <List
-                items={getChannels(repositories).map(c => c.name)}
+                items={channelRepository.getChannels().map(c => c.name)}
                 label="Canaux"
                 onClick={onChannelChange}>
 

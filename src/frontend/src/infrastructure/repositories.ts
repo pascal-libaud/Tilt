@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ChannelRepository, Repositories, UserRepository } from "../application/repositories";
+import { ChannelRepository } from "../application/channel-repository";
 import { Channel } from "../domain/channel";
 import { User } from "../domain/user";
 import { Message, createMessage } from "../domain/message";
+import { UserRepository } from "../application/user-repository";
 
 const pascal = { name: 'Pascal' }
 const bertrand = { name: 'Bertrand' }
@@ -17,7 +18,7 @@ const messages: Message[] = [
     createMessage(pascal, 'Quoi de neuf ?')
 ]
 
-function useChannelRepository(): ChannelRepository {
+export function useChannelRepository(): ChannelRepository {
     const defaultChannels: Channel[] = [
         { name: 'General', users: [...users], messages: [...messages] },
         { name: 'Privé', users: [...users], messages: [] },
@@ -43,17 +44,10 @@ function useChannelRepository(): ChannelRepository {
     }
 }
 
-function useUserRepository(): UserRepository {
+export function useUserRepository(): UserRepository {
     return {
         getUsers() {
             return users;
         }
     };
-}
-
-export function _createRepositories(): Repositories {
-    return {
-        channelRepository: useChannelRepository(),
-        userRepository: useUserRepository()
-    }
 }

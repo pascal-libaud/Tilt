@@ -1,7 +1,7 @@
 import { setCurrentDate } from './shared/datetime';
 import { infraCurrentDate } from './infrastructure/datetime';
-import { _createRepositories } from './infrastructure/repositories';
-import { RepositoriesContext } from './ui/repositories-context';
+import { ChannelRepositoryContext, UserRepositoryContext } from './ui/repositories-context';
+import { useChannelRepository, useUserRepository } from './infrastructure/repositories';
 import Main from './ui/app-components/main';
 import Header from './ui/app-components/header';
 import Footer from './ui/app-components/footer';
@@ -14,13 +14,15 @@ function App() {
   setCurrentDate(infraCurrentDate);
 
   return (
-    <RepositoriesContext.Provider value={_createRepositories()}>
-      <div className="app-container">
-        <Header />
-        <Main />
-        <Footer />
-      </div>
-    </RepositoriesContext.Provider>
+    <UserRepositoryContext.Provider value={useUserRepository()}>
+      <ChannelRepositoryContext.Provider value={useChannelRepository()}>
+        <div className="app-container">
+          <Header />
+          <Main />
+          <Footer />
+        </div>
+      </ChannelRepositoryContext.Provider>
+    </UserRepositoryContext.Provider>
   );
 }
 
