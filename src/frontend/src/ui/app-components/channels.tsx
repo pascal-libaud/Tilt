@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import CustomModal from "../ui-components/modal";
 import List from "../ui-components/list";
 import { ChannelRepositoryContext } from "../repositories-context";
+import { Channel } from "../../domain/channel";
 
 type ChannelsProps = {
-    onChannelChange: (name: string) => void
+    onChannelChange: (name: Channel) => void
 }
 
 function Channels({ onChannelChange }: ChannelsProps) {
@@ -19,7 +20,9 @@ function Channels({ onChannelChange }: ChannelsProps) {
     return (
         <div>
             <List
-                items={channelRepository.getChannels().map(c => c.name)}
+                items={channelRepository.getChannels()}
+                getItemLabel={c => c.name}
+                getKey={c => c.name}
                 label="Canaux"
                 onClick={onChannelChange}>
 
@@ -37,7 +40,6 @@ function Channels({ onChannelChange }: ChannelsProps) {
                     onClick={() => setIsModalOpen(true)}>
                     +
                 </button>
-
             </List>
             <CustomModal isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}

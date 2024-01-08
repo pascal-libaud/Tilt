@@ -1,12 +1,13 @@
 import { useState, ReactNode } from 'react';
 
-type ListItemProps = {
-    item: string
+type ListItemProps<T> = {
+    item: T
     isSelected: boolean
-    onClick: (item: string) => void
+    getLabel(item: T): string
+    onClick: (item: T) => void
 }
 
-const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
+const ListItem = <T,>({ item, isSelected, getLabel, onClick }: ListItemProps<T>) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const backgroundTranparency = () => {
@@ -26,22 +27,24 @@ const ListItem = ({ item, isSelected, onClick }: ListItemProps) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onClick(item)}>
-            {item}
+            {getLabel(item)}
         </div>
     )
 }
 
-type ListProps = {
+type ListProps<T> = {
     children?: ReactNode
-    items: string[]
-    initialSelectedItem?: string | null
+    items: T[]
+    getItemLabel(item: T): string
+    getKey?(item: T): string
+    initialSelectedItem?: T | null
     label?: string
-    onClick?: (item: string) => void
+    onClick?: (item: T) => void
 }
 
-const List = ({ children, items, initialSelectedItem, label, onClick }: ListProps) => {
+const List = <T,>({ children, items, getItemLabel, getKey, initialSelectedItem, label, onClick }: ListProps<T>) => {
 
-    const [selectedItem, setSelectedItem] = useState<string | null>(initialSelectedItem ?? null)
+    const [selectedItem, setSelectedItem] = useState<T | null>(initialSelectedItem ?? null)
 
     return (
         <div>
@@ -53,8 +56,9 @@ const List = ({ children, items, initialSelectedItem, label, onClick }: ListProp
 
             {items.map((item) => (
                 <ListItem
-                    key={item}
+                    key={(getKey ?? getItemLabel)(item)}
                     item={item}
+                    getLabel={getItemLabel}
                     isSelected={item === selectedItem}
                     onClick={item => {
                         onClick && onClick(item)

@@ -5,15 +5,14 @@ import { Users } from "./users";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ChannelRepositoryContext, UserRepositoryContext } from "../repositories-context";
+import { Channel } from "../../domain/channel";
 
 function Main() {
     const channelRepository = useContext(ChannelRepositoryContext)
     const userRepository = useContext(UserRepositoryContext)
 
-    const handleChannelChanged = (name: string) => {
-        const c = channelRepository.getChannels().find(x => x.name == name)
-        if (c != null)
-            channelRepository.selectChannel(c)
+    const handleChannelChanged = (channel: Channel) => {
+        channelRepository.selectChannel(channel)
     }
 
     return (
