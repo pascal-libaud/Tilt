@@ -11,7 +11,11 @@ function Footer() {
                 <a href="https://v0.dev/t/q5v6T5h8Qio">Exemple 3</a>&nbsp;-&nbsp;
                 {dt}
             </p>
-            <p>Copyleft / Copyright ©</p>
+            <p style={{ display: 'flex' }}>
+                <div>Copyleft</div>
+                <div style={{ transform: 'scaleX(-1)' }}>&nbsp;©&nbsp;</div>
+                <div>/ Copyright ©</div>
+            </p>
         </footer>
     )
 }

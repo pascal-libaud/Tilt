@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { UserRepositoryContext } from '../repositories-context';
+import MiniCard from '../ui-components/mini-card';
 import LinkButton from '../ui-components/link-button';
 import logo from './../../logo.svg';
 
 function Header() {
     const userRepository = useContext(UserRepositoryContext)
-
     return (
         <header className="App-header">
             <div>
@@ -14,15 +14,7 @@ function Header() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{
-                    marginRight: '10px',
-                    padding: '4px 8px',
-                    borderRadius: '5px',
-                    color: '#5E2750',
-                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                }}>
-                    {userRepository.getConnected().name}
-                </div>
+                <MiniCard content={userRepository.getConnected().name} />
                 <div style={{ marginRight: '10px' }}>
                     <LinkButton>Se déconnecter</LinkButton>
                 </div>
