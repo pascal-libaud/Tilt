@@ -20,9 +20,9 @@ const messages: Message[] = [
 
 export function useChannelRepository(): ChannelRepository {
     const defaultChannels: Channel[] = [
-        { name: 'Général', users: [...users], messages: [...messages] },
-        { name: 'Privé', users: [...users], messages: [] },
-        { name: 'Dev', users: [...users], messages: [] }
+        { name: 'Général', users: [pascal, bertrand, alphonse], messages: [...messages] },
+        { name: 'Privé', users: [pascal], messages: [] },
+        { name: 'Dev', users: [pascal, alphonse], messages: [] }
     ]
 
     const [channels, setChannels] = useState<Channel[]>(defaultChannels);
@@ -32,13 +32,11 @@ export function useChannelRepository(): ChannelRepository {
         getChannels() {
             return channels;
         },
-        getSelectedChannel() {
-            return selected;
-        },
+        selected,
         addNew(name: string) {
             setChannels([...channels, { name, users: [], messages: [] }])
         },
-        selectChannel(channel: Channel) {
+        select(channel: Channel) {
             setSelected(channel)
         },
         addMessage(channel: Channel, author: User, content: string) {

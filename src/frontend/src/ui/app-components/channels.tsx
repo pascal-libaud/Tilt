@@ -23,7 +23,7 @@ function Channels({ onChannelChange }: ChannelsProps) {
                 items={channelRepository.getChannels()}
                 getItemLabel={c => c.name}
                 getKey={c => c.name}
-                initialSelectedItem={channelRepository.getSelectedChannel()}
+                initialSelectedItem={channelRepository.selected}
                 label="Canaux"
                 onClick={onChannelChange}>
 

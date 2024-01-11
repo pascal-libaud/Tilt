@@ -12,7 +12,7 @@ function Main() {
     const userRepository = useContext(UserRepositoryContext)
 
     const handleChannelChanged = (channel: Channel) => {
-        channelRepository.selectChannel(channel)
+        channelRepository.select(channel)
     }
 
     return (
@@ -23,12 +23,12 @@ function Main() {
             <div className="chat">
                 <Chat
                     channelRepository={channelRepository}
-                    channel={channelRepository.getSelectedChannel()}
+                    channel={channelRepository.selected}
                     user={userRepository.getConnected()}
                 />
             </div>
             <div className="users">
-                <Users userRepository={userRepository} channel={channelRepository.getSelectedChannel()} />
+                <Users userRepository={userRepository} channel={channelRepository.selected} />
             </div>
         </div>
     )
