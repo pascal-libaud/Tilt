@@ -21,7 +21,11 @@ function Main() {
                 <Channels onChannelChange={handleChannelChanged} />
             </div>
             <div className="chat">
-                <Chat channel={channelRepository.getSelectedChannel()} />
+                <Chat
+                    channelRepository={channelRepository}
+                    channel={channelRepository.getSelectedChannel()}
+                    user={userRepository.getConnected()}
+                />
             </div>
             <div className="users">
                 <Users userRepository={userRepository} channel={channelRepository.getSelectedChannel()} />

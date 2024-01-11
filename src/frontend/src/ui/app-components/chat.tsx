@@ -1,11 +1,24 @@
+import { useState } from "react";
+import { ChannelRepository } from "../../application/channel-repository";
 import { Channel } from "../../domain/channel";
+import { User } from "../../domain/user";
 import Card from "../ui-components/card";
 
 type ChatProps = {
+    channelRepository: ChannelRepository
     channel: Channel | null
+    user: User
 }
 
-function Chat({ channel }: ChatProps) {
+function Chat({ channelRepository, channel, user }: ChatProps) {
+    const [currentMessage, setCurrentMessage] = useState<string>('')
+
+    const send = () => {
+        if (currentMessage) {
+            channelRepository.addMessage(channel!, user, currentMessage)
+            setCurrentMessage('')
+        }
+    }
 
     if (channel == null)
         return (<p>Veuillez sélectionner une conversation</p>)
@@ -30,7 +43,10 @@ function Chat({ channel }: ChatProps) {
                             fontSize: '16px',
                             outline: 'none'
                         }}
-                        placeholder="Taper un message" />
+                        placeholder="Taper un message"
+                        value={currentMessage}
+                        onKeyDown={(event) => event.key === 'Enter' ? send() : null}
+                        onChange={(evt) => setCurrentMessage(evt.target.value)} />
                     <button
                         style={{
                             padding: '5px',
@@ -40,7 +56,8 @@ function Chat({ channel }: ChatProps) {
                             color: '#fff',
                             border: '1px solid #333',
                             outline: 'none',
-                        }}>
+                        }}
+                        onClick={send}>
                         Envoyer
                     </button>
                 </div>

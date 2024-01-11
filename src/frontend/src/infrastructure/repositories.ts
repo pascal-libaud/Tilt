@@ -40,6 +40,9 @@ export function useChannelRepository(): ChannelRepository {
         },
         selectChannel(channel: Channel) {
             setSelected(channel)
+        },
+        addMessage(channel: Channel, author: User, content: string) {
+            channel.messages.push(createMessage(author, content))
         }
     }
 }
