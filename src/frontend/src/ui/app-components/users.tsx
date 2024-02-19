@@ -9,7 +9,7 @@ type UsersProps = {
 
 export function Users({ channel, userRepository }: UsersProps) {
 
-    const getName = (u: User) => { return u.name + (u == userRepository.getConnected() ? ' *' : '') }
+    const getName = (u: User) => { return u.name + (u === userRepository.getConnected() ? ' *' : '') }
 
     // TODO Créer un ui-component affichant un arbre
     return (
