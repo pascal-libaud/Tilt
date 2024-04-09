@@ -1,3 +1,4 @@
+import React from 'react';
 import { setCurrentDate } from './shared/datetime';
 import { infraCurrentDate } from './infrastructure/datetime';
 import { ChannelRepositoryContext, UserRepositoryContext } from './ui/repositories-context';
