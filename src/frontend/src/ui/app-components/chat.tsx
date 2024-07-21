@@ -29,7 +29,7 @@ function Chat({ channelRepository, channel, user }: ChatProps) {
                 <hr />
                 <div style={{ overflowY: 'auto', flex: 1 }}>
                     {
-                        channel.messages.map(m => <Card header={m.author.name} content={m.content} />)
+                        channel.messages.map((m, i) => <Card key={i} header={m.author.name} content={m.content} />)
                     }
                 </div>
                 <div style={{ display: 'flex' }}>
