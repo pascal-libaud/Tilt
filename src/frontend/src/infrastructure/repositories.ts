@@ -6,21 +6,21 @@ import { Message, createMessage } from "../domain/message";
 import { UserRepository } from "../application/user-repository";
 
 const pascal = { name: 'Pascal', isOnline: true }
-const bertrand = { name: 'Bertrand', isOnline: false }
+const gerard = { name: 'Gérard', isOnline: false }
 const alphonse = { name: 'Alphonse', isOnline: true }
 
-const users: User[] = [pascal, bertrand, alphonse]
+const users: User[] = [pascal, gerard, alphonse]
 
 const messages: Message[] = [
     createMessage(pascal, 'Salut la compagnie !'),
-    createMessage(bertrand, 'Salut !'),
+    createMessage(gerard, 'Salut !'),
     createMessage(alphonse, 'Yo !'),
     createMessage(pascal, 'Quoi de neuf ?')
 ]
 
 export function useChannelRepository(): ChannelRepository {
     const defaultChannels: Channel[] = [
-        { name: 'Général', users: [pascal, bertrand, alphonse], messages: [...messages] },
+        { name: 'Général', users: [pascal, gerard, alphonse], messages: [...messages] },
         { name: 'Privé', users: [pascal], messages: [] },
         { name: 'Dev', users: [pascal, alphonse], messages: [] }
     ]
